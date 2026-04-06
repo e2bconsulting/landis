@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landis - Your Home, Wherever You Are</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0a1f3d;
+            --navy-light: #132d54;
+            --gold: #c9a84c;
+            --gold-light: #d4b96a;
+            --gold-dark: #b08d35;
+            --white: #ffffff;
+            --off-white: #f8f6f1;
+            --gray-light: #e8e4dc;
+            --gray: #8a8578;
+            --text-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 31, 61, 0.97);
+            padding: 0.7rem 5%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 50px;
+        }
+
+        .nav-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            padding: 0.3rem 0;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--navy) !important;
+            padding: 0.7rem 1.8rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+            border: 2px solid var(--gold);
+        }
+
+        .nav-cta:hover {
+            background: transparent !important;
+            color: var(--gold) !important;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(10, 31, 61, 0.92) 0%, rgba(19, 45, 84, 0.85) 50%, rgba(10, 31, 61, 0.78) 100%),
+                url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1920&q=80') center/cover no-repeat;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(201, 168, 76, 0.05) 0%, transparent 40%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gold);
+            opacity: 0.4;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            border-color: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.8rem;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        .hero-scroll i {
+            display: block;
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--navy);
+            padding: 0;
+            position: relative;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .stat-item {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            border-right: 1px solid rgba(201, 168, 76, 0.15);
+            transition: background 0.3s;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-item:hover {
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ===== SEARCH BAR ===== */
+        .search-section {
+            background: var(--off-white);
+            padding: 4rem 5%;
+        }
+
+        .search-box {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.08);
+            position: relative;
+            margin-top: -5rem;
+            z-index: 10;
+        }
+
+        .search-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) auto;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: border-color 0.3s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .filter-group select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8578' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .search-btn {
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(201, 168, 76, 0.3);
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 6rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--navy);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ===== PROPERTY TYPES ===== */
+        .types-section {
+            background: var(--white);
+        }
+
+        .types-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .type-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 420px;
+            cursor: pointer;
+            group: true;
+        }
+
+        .type-card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+        }
+
+        .type-card:hover .type-card-bg {
+            transform: scale(1.08);
+        }
+
+        .type-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 31, 61, 0.9) 0%, rgba(10, 31, 61, 0.3) 50%, transparent 100%);
+            transition: background 0.3s;
+        }
+
+        .type-card:hover .type-card-overlay {
+            background: linear-gradient(to top, rgba(10, 31, 61, 0.95) 0%, rgba(10, 31, 61, 0.5) 60%, rgba(10, 31, 61, 0.2) 100%);
+        }
+
+        .type-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .type-card-icon {
+            width: 55px;
+            height: 55px;
+            background: var(--gold);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .type-card:hover .type-card-icon {
+            transform: scale(1.1);
+        }
+
+        .type-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .type-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .type-card-link {
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .type-card:hover .type-card-link {
+            gap: 0.8rem;
+        }
+
+        /* ===== FEATURED PROPERTIES ===== */
+        .featured-section {
+            background: var(--off-white);
+        }
+
+        .properties-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .property-img {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .property-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .property-card:hover .property-img img {
+            transform: scale(1.05);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .property-fav {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .property-fav:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .property-price span {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .property-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .property-location {
+            color: var(--gray);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 1.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .property-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .property-feature i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* ===== WHY LANDIS ===== */
+        .why-section {
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 1px solid rgba(201, 168, 76, 0.08);
+        }
+
+        .why-section .section-tag {
+            color: var(--gold);
+        }
+
+        .why-section .section-title {
+            color: var(--white);
+        }
+
+        .why-section .section-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .why-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(201, 168, 76, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .why-card:hover {
+            background: rgba(201, 168, 76, 0.05);
+            border-color: rgba(201, 168, 76, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .why-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin: 0 auto 1.5rem;
+        }
+
+        .why-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .why-card p {
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ===== DESTINATIONS ===== */
+        .destinations-section {
+            background: var(--white);
+        }
+
+        .dest-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 250px 250px;
+            gap: 1.5rem;
+        }
+
+        .dest-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .dest-card:first-child {
+            grid-row: span 2;
+        }
+
+        .dest-card:nth-child(2) {
+            grid-column: span 2;
+        }
+
+        .dest-card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .dest-card:hover .dest-card-bg {
+            transform: scale(1.08);
+        }
+
+        .dest-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10, 31, 61, 0.8) 0%, transparent 60%);
+        }
+
+        .dest-card-info {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 2;
+        }
+
+        .dest-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--white);
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .dest-card span {
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials-section {
+            background: var(--off-white);
+        }
+
+        .testimonials-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .testimonial-quote {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            position: relative;
+            padding: 6rem 5%;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(10, 31, 61, 0.95), rgba(19, 45, 84, 0.9)),
+                url('https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1920&q=80') center/cover no-repeat;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-content h2 span {
+            color: var(--gold);
+        }
+
+        .cta-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 0.8rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(201, 168, 76, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-form input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .cta-form button {
+            padding: 1rem 2rem;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .cta-form button:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy);
+            padding: 5rem 5% 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .footer-brand h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .footer-social a {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--gold);
+            color: var(--navy);
+            border-color: var(--gold);
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--gold);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.35);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== WHATSAPP BUTTON ===== */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.2rem; }
+            .types-grid { grid-template-columns: repeat(2, 1fr); }
+            .properties-grid { grid-template-columns: repeat(2, 1fr); }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .dest-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .dest-card:first-child { grid-row: auto; }
+            .dest-card:nth-child(2) { grid-column: auto; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .search-filters { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .types-grid { grid-template-columns: 1fr; }
+            .properties-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .dest-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .search-filters { grid-template-columns: 1fr; }
+            .section-title { font-size: 2rem; }
+            .cta-content h2 { font-size: 2rem; }
+            .cta-form { flex-direction: column; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+        }
+
+        /* ===== MOBILE MENU ===== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 31, 61, 0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .mobile-nav a:hover {
+            color: var(--gold);
+        }
+
+        .mobile-nav-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <span class="nav-logo-text">LANDIS</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#biens">Nos Biens</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#temoignages">Temoignages</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav-cta">Nous Contacter</a></li>
+        </ul>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#accueil" onclick="toggleMobileMenu()">Accueil</a>
+        <a href="#biens" onclick="toggleMobileMenu()">Nos Biens</a>
+        <a href="#destinations" onclick="toggleMobileMenu()">Destinations</a>
+        <a href="#temoignages" onclick="toggleMobileMenu()">Temoignages</a>
+        <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="accueil">
+        <div class="hero-bg"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-globe-americas"></i>
+                Immobilier pour Tunisiens du Monde
+            </div>
+            <h1>Votre Maison,<br><span>Ou Que Vous Soyez</span></h1>
+            <p class="hero-subtitle">
+                Landis vous accompagne dans l'achat de votre appartement, maison ou terrain en Tunisie.
+                Un service premium dedie aux Tunisiens residant a l'etranger.
+            </p>
+            <div class="hero-buttons">
+                <a href="#biens" class="btn-primary">
+                    <i class="fas fa-search"></i> Explorer les Biens
+                </a>
+                <a href="#contact" class="btn-secondary">
+                    <i class="fas fa-phone"></i> Prendre Rendez-vous
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            Decouvrir
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- STATS BAR -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Biens Disponibles</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Pays Desservis</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Clients Satisfaits</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Annees d'Experience</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH -->
+    <section class="search-section">
+        <div class="search-box">
+            <h3 class="search-title"><i class="fas fa-search" style="color: var(--gold); margin-right: 0.5rem;"></i> Trouvez Votre Bien Ideal</h3>
+            <div class="search-filters">
+                <div class="filter-group">
+                    <label>Type de Bien</label>
+                    <select>
+                        <option>Tous les types</option>
+                        <option>Appartement</option>
+                        <option>Maison / Villa</option>
+                        <option>Terrain</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Localisation</label>
+                    <select>
+                        <option>Toute la Tunisie</option>
+                        <option>Tunis</option>
+                        <option>Sousse</option>
+                        <option>Hammamet</option>
+                        <option>Djerba</option>
+                        <option>La Marsa</option>
+                        <option>Carthage</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Budget Max</label>
+                    <select>
+                        <option>Sans limite</option>
+                        <option>200 000 TND</option>
+                        <option>400 000 TND</option>
+                        <option>600 000 TND</option>
+                        <option>1 000 000 TND</option>
+                        <option>2 000 000+ TND</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Chambres</label>
+                    <select>
+                        <option>Toutes</option>
+                        <option>1+</option>
+                        <option>2+</option>
+                        <option>3+</option>
+                        <option>4+</option>
+                    </select>
+                </div>
+                <button class="search-btn">
+                    <i class="fas fa-search"></i> Rechercher
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPERTY TYPES -->
+    <section class="section types-section" id="biens">
+        <div class="section-header">
+            <span class="section-tag">Nos Categories</span>
+            <h2 class="section-title">Quel Bien Vous Correspond ?</h2>
+            <p class="section-desc">Decouvrez notre selection de biens immobiliers en Tunisie, adaptes a tous vos projets de vie.</p>
+        </div>
+        <div class="types-grid">
+            <div class="type-card">
+                <div class="type-card-bg" style="background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"></div>
+                <div class="type-card-overlay"></div>
+                <div class="type-card-content">
+                    <div class="type-card-icon"><i class="fas fa-building"></i></div>
+                    <h3>Appartements</h3>
+                    <p>Des appartements modernes dans les meilleurs quartiers de Tunisie. Du S+1 au S+4.</p>
+                    <a href="#" class="type-card-link">Voir les offres <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="type-card">
+                <div class="type-card-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80')"></div>
+                <div class="type-card-overlay"></div>
+                <div class="type-card-content">
+                    <div class="type-card-icon"><i class="fas fa-home"></i></div>
+                    <h3>Maisons & Villas</h3>
+                    <p>Villas avec jardin, maisons familiales et proprietes de prestige a travers tout le pays.</p>
+                    <a href="#" class="type-card-link">Voir les offres <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="type-card">
+                <div class="type-card-bg" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80')"></div>
+                <div class="type-card-overlay"></div>
+                <div class="type-card-content">
+                    <div class="type-card-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>Terrains</h3>
+                    <p>Terrains constructibles et lots de terrain dans les zones les plus prisees de Tunisie.</p>
+                    <a href="#" class="type-card-link">Voir les offres <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROPERTIES -->
+    <section class="section featured-section">
+        <div class="section-header">
+            <span class="section-tag">Selection Premium</span>
+            <h2 class="section-title">Biens a la Une</h2>
+            <p class="section-desc">Nos meilleures opportunites immobilieres, selectionnees avec soin pour nos clients.</p>
+        </div>
+        <div class="properties-grid">
+            <!-- Property 1 -->
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="Villa La Marsa">
+                    <span class="property-badge">Nouveau</span>
+                    <button class="property-fav"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-info">
+                    <div class="property-price">850 000 TND</div>
+                    <div class="property-name">Villa Contemporaine avec Piscine</div>
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> La Marsa, Tunis</div>
+                    <div class="property-features">
+                        <span class="property-feature"><i class="fas fa-bed"></i> 4 Ch.</span>
+                        <span class="property-feature"><i class="fas fa-bath"></i> 3 SDB</span>
+                        <span class="property-feature"><i class="fas fa-ruler-combined"></i> 320 m2</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Property 2 -->
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Appartement Sousse">
+                    <span class="property-badge">Vue Mer</span>
+                    <button class="property-fav"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-info">
+                    <div class="property-price">380 000 TND</div>
+                    <div class="property-name">Appartement S+3 Vue sur Mer</div>
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Sousse, Kantaoui</div>
+                    <div class="property-features">
+                        <span class="property-feature"><i class="fas fa-bed"></i> 3 Ch.</span>
+                        <span class="property-feature"><i class="fas fa-bath"></i> 2 SDB</span>
+                        <span class="property-feature"><i class="fas fa-ruler-combined"></i> 145 m2</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Property 3 -->
+            <div class="property-card">
+                <div class="property-img">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Terrain Hammamet">
+                    <span class="property-badge">Opportunite</span>
+                    <button class="property-fav"><i class="far fa-heart"></i></button>
+                </div>
+                <div class="property-info">
+                    <div class="property-price">220 000 TND</div>
+                    <div class="property-name">Terrain Constructible Zone Residentielle</div>
+                    <div class="property-location"><i class="fas fa-map-marker-alt"></i> Hammamet Nord</div>
+                    <div class="property-features">
+                        <span class="property-feature"><i class="fas fa-ruler-combined"></i> 500 m2</span>
+                        <span class="property-feature"><i class="fas fa-file-alt"></i> Titre Bleu</span>
+                        <span class="property-feature"><i class="fas fa-road"></i> Route</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY LANDIS -->
+    <section class="section why-section">
+        <div class="section-header">
+            <span class="section-tag">Pourquoi Landis</span>
+            <h2 class="section-title">Un Service Pense Pour Vous</h2>
+            <p class="section-desc">Nous comprenons les defis des Tunisiens de l'etranger. C'est pourquoi nous avons cree un service sur mesure.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-video"></i></div>
+                <h3>Visites Virtuelles</h3>
+                <p>Visitez chaque bien depuis chez vous grace a nos visites video en direct et nos tours 360.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Securite Juridique</h3>
+                <p>Verification complete des titres de propriete et accompagnement juridique par nos avocats partenaires.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-handshake"></i></div>
+                <h3>Accompagnement Total</h3>
+                <p>De la recherche a la remise des cles, un conseiller dedie vous guide a chaque etape.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon"><i class="fas fa-globe"></i></div>
+                <h3>Service International</h3>
+                <p>Disponibles dans votre fuseau horaire, nous parlons votre langue et comprenons vos besoins.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINATIONS -->
+    <section class="section destinations-section" id="destinations">
+        <div class="section-header">
+            <span class="section-tag">Ou Investir</span>
+            <h2 class="section-title">Destinations Populaires</h2>
+            <p class="section-desc">Les villes les plus recherchees par nos clients a travers la Tunisie.</p>
+        </div>
+        <div class="dest-grid">
+            <div class="dest-card">
+                <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1572953109213-3be62398eb95?w=800&q=80')"></div>
+                <div class="dest-card-overlay"></div>
+                <div class="dest-card-info">
+                    <h3>Tunis</h3>
+                    <span>120+ biens</span>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1568322503419-1e76bca819f3?w=800&q=80')"></div>
+                <div class="dest-card-overlay"></div>
+                <div class="dest-card-info">
+                    <h3>Hammamet</h3>
+                    <span>85+ biens</span>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=800&q=80')"></div>
+                <div class="dest-card-overlay"></div>
+                <div class="dest-card-info">
+                    <h3>Sousse</h3>
+                    <span>95+ biens</span>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1548690312-e3b507d8c110?w=800&q=80')"></div>
+                <div class="dest-card-overlay"></div>
+                <div class="dest-card-info">
+                    <h3>Djerba</h3>
+                    <span>60+ biens</span>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80')"></div>
+                <div class="dest-card-overlay"></div>
+                <div class="dest-card-info">
+                    <h3>La Marsa</h3>
+                    <span>70+ biens</span>
+                </div>
+            </div>
+            <div class="dest-card">
+                <div class="dest-card-bg" style="background-image: url('https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80')"></div>
+                <div class="dest-card-overlay"></div>
+                <div class="dest-card-info">
+                    <h3>Carthage</h3>
+                    <span>45+ biens</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section testimonials-section" id="temoignages">
+        <div class="section-header">
+            <span class="section-tag">Temoignages</span>
+            <h2 class="section-title">Ce Que Disent Nos Clients</h2>
+            <p class="section-desc">Des centaines de Tunisiens du monde entier nous ont fait confiance.</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Grace a Landis, j'ai pu acheter mon appartement a Tunis depuis Paris. Les visites virtuelles et l'accompagnement juridique m'ont rassure tout au long du processus.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">SK</div>
+                    <div>
+                        <div class="testimonial-name">Sami Khalil</div>
+                        <div class="testimonial-role">Paris, France</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Un service exceptionnel ! L'equipe Landis a gere toutes les demarches administratives pour l'achat de notre villa a Hammamet. Je recommande vivement.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">LB</div>
+                    <div>
+                        <div class="testimonial-name">Leila Ben Ali</div>
+                        <div class="testimonial-role">Montreal, Canada</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-quote">"</div>
+                <p class="testimonial-text">Investir dans un terrain a Sousse etait mon reve. Landis l'a rendu possible avec un suivi personnalise et une transparence totale sur chaque etape.</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AM</div>
+                    <div>
+                        <div class="testimonial-name">Ahmed Mansouri</div>
+                        <div class="testimonial-role">Dubai, EAU</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="cta-bg"></div>
+        <div class="cta-content">
+            <h2>Pret a Trouver<br><span>Votre Chez-Vous ?</span></h2>
+            <p>Inscrivez-vous a notre newsletter pour recevoir nos meilleures offres et les nouvelles opportunites immobilieres en avant-premiere.</p>
+            <form class="cta-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Votre adresse email">
+                <button type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LANDIS</h3>
+                <p>Your Home, Wherever You Are.<br>L'agence immobiliere de reference pour les Tunisiens du monde entier.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#biens">Nos Biens</a></li>
+                    <li><a href="#destinations">Destinations</a></li>
+                    <li><a href="#temoignages">Temoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Nos Services</h4>
+                <ul>
+                    <li><a href="#">Visites Virtuelles</a></li>
+                    <li><a href="#">Conseil Juridique</a></li>
+                    <li><a href="#">Estimation Gratuite</a></li>
+                    <li><a href="#">Gestion Locative</a></li>
+                    <li><a href="#">Financement</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-phone"></i> +216 XX XXX XXX</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> contact@landis.tn</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Tunis, Tunisie</a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Landis. Tous droits reserves.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Mentions Legales</a>
+                <a href="#">Politique de Confidentialite</a>
+                <a href="#">CGV</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP -->
+    <a href="#" class="whatsapp-btn" title="Contactez-nous sur WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            document.getElementById('mobileNav').classList.toggle('active');
+        }
+
+        // Animate stats on scroll
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const observerOptions = { threshold: 0.5 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Animate cards on scroll
+        document.querySelectorAll('.type-card, .property-card, .why-card, .dest-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Favorite button toggle
+        document.querySelectorAll('.property-fav').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const icon = btn.querySelector('i');
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
+                if (icon.classList.contains('fas')) {
+                    icon.style.color = '#e74c3c';
+                } else {
+                    icon.style.color = '';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
